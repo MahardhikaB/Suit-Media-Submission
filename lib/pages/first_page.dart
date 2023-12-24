@@ -53,9 +53,7 @@ class FirstPage extends StatefulWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SecondPage(
-          name: name,
-        ),
+        builder: (context) => SecondPage(name: name),
       )
     );
   }

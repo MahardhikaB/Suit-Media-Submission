@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:suitmedia_quest/bloc/list_user_bloc.dart';
+import 'package:suitmedia_quest/bloc/user_bloc.dart';
 import 'package:suitmedia_quest/pages/first_page.dart';
 
 void main() {
@@ -10,11 +13,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: FirstPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => UserBloc()),
+        BlocProvider(create: (_) => ListUserBloc()),
+      ], 
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        home: FirstPage(),
+      ),
     );
-
   }
 }

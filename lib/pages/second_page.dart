@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:suitmedia_quest/bloc/user_bloc.dart';
 import 'package:suitmedia_quest/components/button.dart';
+import 'package:suitmedia_quest/pages/third_page.dart';
 import 'package:suitmedia_quest/theme/theme.dart';
 
 class SecondPage extends StatelessWidget {
@@ -56,6 +59,21 @@ class SecondPage extends StatelessWidget {
                   const SizedBox(height: 16),
                 ],
               ),
+            ),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                String? username;
+                if (state is UserLoaded) {
+                  username = '${state.user.firstName} ${state.user.lastName}';
+                }
+                return Text(
+                  username ?? 'No User Selected',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
+                );
+              },
             ),
             MyButton(
               text: 'Choose a User',
