@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:suitmedia_quest/pages/first_pages.dart';
+import 'package:suitmedia_quest/pages/first_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -15,5 +15,6 @@ class MainApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: FirstPage(),
     );
+
   }
 }

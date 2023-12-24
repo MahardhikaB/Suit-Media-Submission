@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
+  final String initialValue;
   final String hintText;
-  final TextEditingController controller;
-  final TextInputType? keyboardType;
-  final bool readOnly;
+  final void Function(String)? onChanged;
 
   const MyTextField({
-    super.key,
+    Key? key,
+    this.initialValue = '',
     required this.hintText,
-    required this.controller,
-    this.keyboardType,
-    this.readOnly = false,
-    });
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +22,9 @@ class MyTextField extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        readOnly: readOnly,
+      child: TextFormField(
+        onChanged: onChanged,
+        initialValue: initialValue,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(
@@ -38,7 +35,8 @@ class MyTextField extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-        ),),
+        ),
+      ),
     );
   }
 }
