@@ -68,54 +68,56 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        constraints: const BoxConstraints.expand(),
-        padding: MyTheme.screenPadding,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/background.png'),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.center,
+          constraints: const BoxConstraints.expand(),
+          padding: MyTheme.screenPadding,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/ic_photo.png'),
-            const SizedBox(height: 48),
-            MyTextField(
-              hintText: 'Name',
-              initialValue: name,
-              onChanged: (value) {
-                setState(() {
-                  name = value;
-                });
-              },
-              ),
-            MyTextField(
-              hintText: 'Palindrome',
-              initialValue: palindrome,
-              onChanged: (value) {
-                setState(() {
-                  palindrome = value;
-                });
-              },
-              ),
-            const SizedBox(height: 24),
-            MyButton(
-              text: 'CHECK', 
-              onPressed: () {
-                widget._checkPalindrome(context, palindrome);
-              }
-              ),
-            const SizedBox(height: 16),
-            MyButton(
-              text: 'NEXT', 
-              onPressed: () {
-                widget._configNextButton(context, name);
-              }
-              ),
-          ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/ic_photo.png'),
+              const SizedBox(height: 48),
+              MyTextField(
+                hintText: 'Name',
+                initialValue: name,
+                onChanged: (value) {
+                  setState(() {
+                    name = value;
+                  });
+                },
+                ),
+              MyTextField(
+                hintText: 'Palindrome',
+                initialValue: palindrome,
+                onChanged: (value) {
+                  setState(() {
+                    palindrome = value;
+                  });
+                },
+                ),
+              const SizedBox(height: 24),
+              MyButton(
+                text: 'CHECK', 
+                onPressed: () {
+                  widget._checkPalindrome(context, palindrome);
+                }
+                ),
+              const SizedBox(height: 16),
+              MyButton(
+                text: 'NEXT', 
+                onPressed: () {
+                  widget._configNextButton(context, name);
+                }
+                ),
+            ],
+          ),
         ),
       ),
     );

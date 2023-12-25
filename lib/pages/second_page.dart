@@ -32,61 +32,63 @@ class SecondPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: MyTheme.screenPadding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Welcome',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: MyTheme.screenPadding,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Welcome',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  Text(
-                    name,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                ],
+                    const SizedBox(height: 16),
+                  ],
+                ),
               ),
-            ),
-            BlocBuilder<UserBloc, UserState>(
-              builder: (context, state) {
-                String? username;
-                if (state is UserLoaded) {
-                  username = '${state.user.firstName} ${state.user.lastName}';
-                }
-                return Text(
-                  username ?? 'No User Selected',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                  ),
-                );
-              },
-            ),
-            MyButton(
-              text: 'Choose a User',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ThirdPage(),
-                  ),
-                );
-              },
-            ),
-          ],
+              BlocBuilder<UserBloc, UserState>(
+                builder: (context, state) {
+                  String? username;
+                  if (state is UserLoaded) {
+                    username = '${state.user.firstName} ${state.user.lastName}';
+                  }
+                  return Text(
+                    username ?? 'No User Selected',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  );
+                },
+              ),
+              MyButton(
+                text: 'Choose a User',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ThirdPage(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
